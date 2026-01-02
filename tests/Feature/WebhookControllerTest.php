@@ -22,7 +22,7 @@ it('can handle webhook calls', function () {
     $raw = 'foo=bar';
     $response = $this->call(
         method: 'POST',
-        uri: route('message_forwarder.webhook'),
+        uri: route('message-forwarder.webhook'),
         server: [
             'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
             'CONTENT_LENGTH' => strlen($raw),
@@ -71,10 +71,10 @@ it('verifies webhook signature when secret is set', function () {
     $binary = hash_hmac('sha256', $signedPayload, $secret, true);
     $signature = urlencode(base64_encode($binary));
 
-    $raw = "foo=bar&timestamp={$timestamp}&sign=".urlencode($signature);
+    $raw = "foo=bar&timestamp={$timestamp}&sign=" . urlencode($signature);
     $response = $this->call(
         method: 'POST',
-        uri: route('message_forwarder.webhook'),
+        uri: route('message-forwarder.webhook'),
         server: [
             'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
             'CONTENT_LENGTH' => strlen($raw),
@@ -91,7 +91,7 @@ it('fails when signature is missing but secret is set', function () {
     $raw = "foo=bar";
     $response = $this->call(
         method: 'POST',
-        uri: route('message_forwarder.webhook'),
+        uri: route('message-forwarder.webhook'),
         server: [
             'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
             'CONTENT_LENGTH' => strlen($raw),
@@ -112,10 +112,10 @@ it('fails when signature is invalid', function () {
     $binary = hash_hmac('sha256', $signedPayload, $secret, true);
     $signature = urlencode(base64_encode($binary));
 
-    $raw = "foo=bar&timestamp={$timestamp}&sign=".urlencode($signature);
+    $raw = "foo=bar&timestamp={$timestamp}&sign=" . urlencode($signature);
     $response = $this->call(
         method: 'POST',
-        uri: route('message_forwarder.webhook'),
+        uri: route('message-forwarder.webhook'),
         server: [
             'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
             'CONTENT_LENGTH' => strlen($raw),

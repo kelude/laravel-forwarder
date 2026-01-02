@@ -38,7 +38,7 @@ class MessageForwarderServiceProvider extends ServiceProvider
             ], 'message-forwarder-config');
 
             $this->publishes([
-                __DIR__.'/../stubs/HandleWebhook.php' => $this->app->basePath('app/Actions/MessageForwarder/HandleWebhook.php'),
+                __DIR__ . '/../stubs/HandleWebhook.php' => $this->app->basePath('app/Actions/MessageForwarder/HandleWebhook.php'),
                 __DIR__ . '/../stubs/MessageForwarderServiceProvider.php' => $this->app->basePath('app/Providers/MessageForwarderServiceProvider.php'),
             ], 'message-forwarder-support');
         }
@@ -55,9 +55,9 @@ class MessageForwarderServiceProvider extends ServiceProvider
             Route::group([
                 'domain' => config('message_forwarder.domain', null),
                 'prefix' => config('message_forwarder.prefix'),
-                'as' => 'message_forwarder.',
+                'as' => 'message-forwarder.',
             ], function () {
-                $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
+                $this->loadRoutesFrom(__DIR__ . '/../routes/routes.php');
             });
         }
     }
