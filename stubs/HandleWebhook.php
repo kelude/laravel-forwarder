@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Actions\MessageForwarder;
+namespace App\Actions\Forwarder;
 
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Log;
-use Kelude\MessageForwarder\Contracts\HandlesWebhooks;
+use Kelude\Forwarder\Contracts\HandlesWebhooks;
 use Symfony\Component\HttpFoundation\Response;
 
 class HandleWebhook implements HandlesWebhooks

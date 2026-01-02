@@ -1,28 +1,28 @@
 <?php
 
-namespace Kelude\MessageForwarder\Http\Controllers;
+namespace Kelude\Forwarder\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Kelude\MessageForwarder\Contracts\HandlesWebhooks;
-use Kelude\MessageForwarder\Events\WebhookHandled;
-use Kelude\MessageForwarder\Events\WebhookReceived;
-use Kelude\MessageForwarder\Http\Middleware\VerifyWebhookSignature;
+use Kelude\Forwarder\Contracts\HandlesWebhooks;
+use Kelude\Forwarder\Events\WebhookHandled;
+use Kelude\Forwarder\Events\WebhookReceived;
+use Kelude\Forwarder\Http\Middleware\VerifyWebhookSignature;
 
 class WebhookController extends Controller
 {
     public function __construct()
     {
-        if (config('message_forwarder.webhook.secret')) {
+        if (config('forwarder.webhook.secret')) {
             $this->middleware(VerifyWebhookSignature::class);
         }
     }
 
     /**
-     * Handle a MessageForwarder webhook call.
+     * Handle a Forwarder webhook call.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Kelude\MessageForwarder\Contracts\HandlesWebhooks  $handler
+     * @param  \Kelude\Forwarder\Contracts\HandlesWebhooks  $handler
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, HandlesWebhooks $handler)

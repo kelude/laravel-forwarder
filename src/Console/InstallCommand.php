@@ -1,13 +1,13 @@
 <?php
 
-namespace Kelude\MessageForwarder\Console;
+namespace Kelude\Forwarder\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\ServiceProvider;
-use Kelude\MessageForwarder\MessageForwarderServiceProvider;
+use Kelude\Forwarder\ForwarderServiceProvider;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'message-forwarder:install')]
+#[AsCommand(name: 'forwarder:install')]
 class InstallCommand extends Command
 {
     /**
@@ -15,14 +15,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'message-forwarder:install';
+    protected $signature = 'forwarder:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install all of the MessageForwarder';
+    protected $description = 'Install all of the Forwarder';
 
     /**
      * Execute the console command.
@@ -30,16 +30,16 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->callSilent('vendor:publish', [
-            '--provider' => MessageForwarderServiceProvider::class,
+            '--provider' => ForwarderServiceProvider::class,
         ]);
 
         $this->registerPaymentServiceProvider();
 
-        $this->components->info('MessageForwarder scaffolding installed successfully.');
+        $this->components->info('Forwarder scaffolding installed successfully.');
     }
 
     /**
-     * Register the MessageForwarder service provider in the application configuration file.
+     * Register the Forwarder service provider in the application configuration file.
      */
     protected function registerPaymentServiceProvider(): void
     {
@@ -47,6 +47,6 @@ class InstallCommand extends Command
             return;
         }
 
-        ServiceProvider::addProviderToBootstrapFile(\App\Providers\MessageForwarderServiceProvider::class);
+        ServiceProvider::addProviderToBootstrapFile(\App\Providers\ForwarderServiceProvider::class);
     }
 }

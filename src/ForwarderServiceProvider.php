@@ -1,18 +1,18 @@
 <?php
 
-namespace Kelude\MessageForwarder;
+namespace Kelude\Forwarder;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class MessageForwarderServiceProvider extends ServiceProvider
+class ForwarderServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/message_forwarder.php', 'message_forwarder');
+        $this->mergeConfigFrom(__DIR__ . '/../config/forwarder.php', 'forwarder');
     }
 
     /**
@@ -34,13 +34,13 @@ class MessageForwarderServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../stubs/message_forwarder.php' => $this->app->configPath('message_forwarder.php'),
-            ], 'message-forwarder-config');
+                __DIR__ . '/../stubs/forwarder.php' => $this->app->configPath('forwarder.php'),
+            ], 'forwarder-config');
 
             $this->publishes([
-                __DIR__ . '/../stubs/HandleWebhook.php' => $this->app->basePath('app/Actions/MessageForwarder/HandleWebhook.php'),
-                __DIR__ . '/../stubs/MessageForwarderServiceProvider.php' => $this->app->basePath('app/Providers/MessageForwarderServiceProvider.php'),
-            ], 'message-forwarder-support');
+                __DIR__ . '/../stubs/HandleWebhook.php' => $this->app->basePath('app/Actions/Forwarder/HandleWebhook.php'),
+                __DIR__ . '/../stubs/ForwarderServiceProvider.php' => $this->app->basePath('app/Providers/ForwarderServiceProvider.php'),
+            ], 'forwarder-support');
         }
     }
 
@@ -51,11 +51,11 @@ class MessageForwarderServiceProvider extends ServiceProvider
      */
     protected function configureRoutes(): void
     {
-        if (MessageForwarder::$registersRoutes) {
+        if (Forwarder::$registersRoutes) {
             Route::group([
-                'domain' => config('message_forwarder.domain', null),
-                'prefix' => config('message_forwarder.prefix'),
-                'as' => 'message-forwarder.',
+                'domain' => config('forwarder.domain', null),
+                'prefix' => config('forwarder.prefix'),
+                'as' => 'forwarder.',
             ], function () {
                 $this->loadRoutesFrom(__DIR__ . '/../routes/routes.php');
             });

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kelude\MessageForwarder\Exceptions;
+namespace Kelude\Forwarder\Exceptions;
 
 use Exception;
 

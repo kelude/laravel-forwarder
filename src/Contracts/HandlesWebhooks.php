@@ -1,6 +1,6 @@
 <?php
 
-namespace Kelude\MessageForwarder\Contracts;
+namespace Kelude\Forwarder\Contracts;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;

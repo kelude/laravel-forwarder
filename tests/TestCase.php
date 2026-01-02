@@ -9,7 +9,7 @@ class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            \Kelude\MessageForwarder\MessageForwarderServiceProvider::class,
+            \Kelude\Forwarder\ForwarderServiceProvider::class,
         ];
     }
 }

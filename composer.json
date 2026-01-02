@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kelude\\MessageForwarder\\": "src/"
+            "Kelude\\Forwarder\\": "src/"
         }
     },
     "autoload-dev": {
@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Kelude\\MessageForwarder\\MessageForwarderServiceProvider"
+                "Kelude\\Forwarder\\ForwarderServiceProvider"
             ]
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kelude\MessageForwarder\Events;
+namespace Kelude\Forwarder\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Http\Request;

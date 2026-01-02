@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Actions\MessageForwarder\HandleWebhook;
+use App\Actions\Forwarder\HandleWebhook;
 use Illuminate\Support\ServiceProvider;
-use Kelude\MessageForwarder\MessageForwarder;
+use Kelude\Forwarder\Forwarder;
 
-class MessageForwarderServiceProvider extends ServiceProvider
+class ForwarderServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -21,6 +21,6 @@ class MessageForwarderServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        MessageForwarder::handleWebhookUsing(HandleWebhook::class);
+        Forwarder::handleWebhookUsing(HandleWebhook::class);
     }
 }

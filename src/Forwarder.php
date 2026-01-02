@@ -1,13 +1,13 @@
 <?php
 
-namespace Kelude\MessageForwarder;
+namespace Kelude\Forwarder;
 
-use Kelude\MessageForwarder\Contracts\HandlesWebhooks;
+use Kelude\Forwarder\Contracts\HandlesWebhooks;
 
-class MessageForwarder
+class Forwarder
 {
     /**
-     * Indicates if MessageForwarder routes will be registered.
+     * Indicates if Forwarder routes will be registered.
      *
      * @var bool
      */
@@ -25,7 +25,7 @@ class MessageForwarder
     }
 
     /**
-     * Configure MessageForwarder to not register its routes.
+     * Configure Forwarder to not register its routes.
      *
      * @return static
      */

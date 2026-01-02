@@ -1,13 +1,13 @@
 <?php
 
-namespace Kelude\MessageForwarder;
+namespace Kelude\Forwarder;
 
-use Kelude\MessageForwarder\Exceptions\SignatureVerificationException;
+use Kelude\Forwarder\Exceptions\SignatureVerificationException;
 
 class WebhookSignature
 {
     /**
-     * Verifies the signature payload sent by MessageForwarder.
+     * Verifies the signature payload sent by Forwarder.
      *
      * @param  string  $payload
      * @param  string  $secret

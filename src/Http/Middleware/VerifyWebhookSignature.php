@@ -1,11 +1,11 @@
 <?php
 
-namespace Kelude\MessageForwarder\Http\Middleware;
+namespace Kelude\Forwarder\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Kelude\MessageForwarder\Exceptions\SignatureVerificationException;
-use Kelude\MessageForwarder\WebhookSignature;
+use Kelude\Forwarder\Exceptions\SignatureVerificationException;
+use Kelude\Forwarder\WebhookSignature;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -21,8 +21,8 @@ class VerifyWebhookSignature
         try {
             WebhookSignature::verifyPayload(
                 $request->getContent(),
-                config('message_forwarder.webhook.secret'),
-                config('message_forwarder.webhook.tolerance')
+                config('forwarder.webhook.secret'),
+                config('forwarder.webhook.tolerance')
             );
         } catch (SignatureVerificationException $exception) {
             throw new AccessDeniedHttpException($exception->getMessage(), $exception);
